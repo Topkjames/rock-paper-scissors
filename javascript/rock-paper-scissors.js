@@ -1,6 +1,16 @@
-console.log("Hello World");
+// Rock Paper Scissors game
+// Plays 5 rounds between the human and the computer
+// Scores are tracked and a final winner is declared at the end
+
+// Quick test to confirm the script is linked correctly
+console.log("Rock Paper Scissors game is ready!, let's play!");
+
+// Generates a random choice for the computer
+// Uses Math.random() to return either "rock", "paper", or "scissors"
 
 function computerChoice() {
+  
+  // Math.random() returns a number between 0 (inclusive) and 1 (exclusive)
   const randomValue = Math.random();
 
   if (randomValue < 0.34) {
@@ -12,6 +22,9 @@ function computerChoice() {
   }
 }
 
+// Prompts the user for a choice and normalizes input to lowercase
+// This prevents case-sensitive errors (e.g., "Rock" vs "rock")
+
 function getHumanChoice() {
   const humanValue = prompt(
     `Choose either "rock", "paper" or "scissors"`
@@ -20,15 +33,23 @@ function getHumanChoice() {
   return humanValue;
 }
 
-
+// Controls the overall game flow
+// Runs 5 rounds, tracks scores, and announces the final winner
 function playGame() {
 
+  // Track total wins across all rounds
   let humanScore = 0;
   let computerScore = 0;
 
+  // Plays a single round of the game
+  // Compares human and computer choices
+  // Updates scores based on the winner
+
   function playRound(humanChoice, computerChoice) {
+    
+    // Check for a tie before evaluating win conditions
   if (humanChoice === computerChoice) {
-    return `It's a tie!`;
+    return `It's a tie!, Both chose ${humanChoice}`;
   } else if (
     (humanChoice === "rock" && computerChoice === "scissors") ||
     (humanChoice === "paper" && computerChoice === "rock") ||
@@ -61,6 +82,7 @@ function playGame() {
   const humanChoice5 = getHumanChoice();
   const computerChoice5 = computerChoice();
   console.log(playRound(humanChoice5, computerChoice5));
+  // Manually playing 5 rounds (loops will be introduced later)
 
   if (humanScore > computerScore) {
     console.log(`Congratulations! You won the game with a score of ${humanScore} to ${computerScore}.`);
@@ -71,4 +93,5 @@ function playGame() {
   }
 }
 
+// Start the game when the script is loaded
 playGame();
